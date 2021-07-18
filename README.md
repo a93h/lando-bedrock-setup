@@ -59,9 +59,10 @@ lando yarn start
  * this will clean up your development environment
  * WARNING: Use with caution. It will destroy your wordpress database and related volumes.
  * WARNING: Running this script is irreversible.
+ * SEVERE WARNING: All docker containers will be destroyed.
 
 ```shell
-bash destory.sh
+bash destory-all-docker-data.sh
 ```
 
 * use the following command to install the required prerequisites
