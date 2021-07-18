@@ -33,6 +33,7 @@ cd ${git_src}
 
 # copy .lando.yml to the project directory
 cp .lando.yml ${project_dir}
+cp .env.example ${project_dir}/.env
 
 # change into project directory.
 cd ${project_dir}

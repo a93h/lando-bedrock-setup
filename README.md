@@ -1,5 +1,5 @@
  ForeWARNing, this tool is not ideal for production.
- It is simple used to create pre-production builds of sage and/or bedrock.
+ It is simply used to create pre-production builds of sage and/or bedrock.
 
 I will look into development builds using lando or docker with these tools later on.
 
