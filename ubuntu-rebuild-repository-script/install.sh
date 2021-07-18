@@ -24,7 +24,7 @@ fi
 
 # bedrock
 git clone https://github.com/roots/bedrock
-rm -r bedrock/.git
+rm -rf bedrock/.git
 # alternate below
 # composer create-project roots/bedrock
 
@@ -34,7 +34,7 @@ cd ${git_src}
 # copy .lando.yml to the project directory
 cp .lando.yml ${project_dir}
 
-# copy environment file
+# copy environment file 
 cp .env.example ${project_dir}/.env
 
 # change into project directory.
@@ -83,7 +83,7 @@ lando composer update
 # note the following can be used also # cd web/wp/wp-content/themes
 cd web/app/themes
 git clone https://github.com/roots/sage
-rm -r sage/.git
+rm -rf sage/.git
 # alternate below
 # composer create-project roots/sage
 cd sage
