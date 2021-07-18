@@ -1,7 +1,7 @@
  ForeWARNing, this tool is not ideal for production.
  It is simply used to create pre-production builds of sage and/or bedrock.
 
-I will look into development builds using lando or docker with these tools later on.
+I will look into production using lando or docker with these tools later on.
 
 1. modify the `.env` as needed. Preferred setup is shown below.
 2. warning: changing the `DB_` values will cause lando to fail building wordpress correctly.
