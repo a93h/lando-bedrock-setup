@@ -1,0 +1,36 @@
+name: bedrock-test
+recipe: wordpress
+env_file:
+  - .env
+proxy:
+  appserver_nginx:
+    - bedrock.test
+  theme:
+    - localhost:3000
+    - localhost:3001
+config:
+  php: 7.4
+  composer_version: 2-latest
+  via: nginx
+  webroot: web
+  database: mariadb
+  xdebug: true
+
+# Add the following if you plan to use Sage as a starter theme
+services:
+  theme:
+    scanner: false
+    type: node:14 # MUST BE >12 TO WORK WITH SAGE 10
+    overrides:
+      ports:
+        - 3000:3000
+        - 3001:3001 
+
+# TODO Work on build steps w/ Lando and tooling here...
+tooling:
+  yarn:
+    service: theme
+
+excludes:
+  - vendor
+  - node_modules
