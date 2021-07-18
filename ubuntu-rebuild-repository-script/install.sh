@@ -22,8 +22,11 @@ then
     mv ${project_dir} ~/lando_and_bedrock/backups/${my_ts}
 fi
 
-# create wordpress/bedrock project
-composer create-project roots/bedrock
+# bedrock
+git clone https://github.com/roots/bedrock
+rm -r bedrock/.git
+# alternate below
+# composer create-project roots/bedrock
 
 # return to git repository
 cd ${git_src}
@@ -77,6 +80,9 @@ lando composer update
 # note the following can be used also # cd web/wp/wp-content/themes
 cd web/app/themes
 git clone https://github.com/roots/sage
+rm -r sage/.git
+# alternate below
+# composer create-project roots/sage
 cd sage
 lando composer install
 lando composer update

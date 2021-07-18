@@ -1,3 +1,80 @@
+ ForeWARNing, this tool is not ideal for production.
+ It is simple used to create pre-production builds of sage and/or bedrock.
+
+I will look into development builds using lando or docker with these tools later on.
+
+1. modify the `.env` as needed. Preferred setup is shown below.
+2. warning: changing the `DB_` values will cause lando to fail building wordpress correctly.
+3. note: change `bedrock.test` to whatever you require. such as `example.local`.
+
+```yaml
+# .env
+
+DB_NAME='wordpress'
+DB_USER='wordpress'
+DB_PASSWORD='wordpress'
+DB_HOST='database'
+
+# Optionally, you can use a data source name (DSN)
+# When using a DSN, you can remove the DB_NAME, DB_USER, DB_PASSWORD, and DB_HOST variables
+# DATABASE_URL='mysql://database_user:database_password@database_host:database_port/database_name'
+
+# Optional variables
+# DB_HOST='localhost'
+# DB_PREFIX='wp_'
+
+WP_ENV='development'
+WP_HOME='http://bedrock.test'
+WP_SITEURL="${WP_HOME}/wp"
+WP_DEBUG_LOG=/path/to/debug.log
+
+# Generate your keys here: https://roots.io/salts.html
+```
+4. Modify the `.lando.yml` if you require.
+5. Complete install.
+```bash
+lando start # optional -vvv to increase verbosity
+lando composer install # install bedrock
+lando composer update # update bedrock
+cd web/app/themes
+# cd web/wp/wp-content/themes
+cd sage
+lando composer install
+lando composer update
+sed -i "s/'sage.test'/'bedrock.test'/g" webpack.mix.js
+lando yarn
+lando yarn start
+```
+
+### Please See Ubuntu Rebuild Repository Script for Creating a fully Updated Version
+### Modifications may be required when using the scripts.
+
+ * Recommended build environment is Linux for ease of use.
+ * Windows and Mac users will need to follow the official documentation
+ * You should have docker and lando installed with either git or composer installed at minimum.
+ * Recommended tools are docker, lando, php, composer and git/github-desktop.
+ * Some kind of text editor is also required. I recommned VS Code.
+
+ * use the following command to destroy all docker containers and volumes.
+ * this will clean up your development environment
+ * WARNING: Use with caution. It will destroy your wordpress database and related volumes.
+ * WARNING: Running this script is irreversible.
+
+```shell
+bash destory.sh
+```
+
+* use the following command to install the required prerequisites
+```shell
+bash pre-install.sh
+```
+
+* use the following command to install bedrock and sage in docker using [lando](https://lando.dev/)
+* the required tools needed to build custom wordpress sites and themes
+```shell
+bash install.sh
+```
+
 <p align="center">
   <a href="https://roots.io/bedrock/">
     <img alt="Bedrock" src="https://cdn.roots.io/app/uploads/logo-bedrock.svg" height="100">
